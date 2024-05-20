@@ -19,17 +19,14 @@ app.use(
   })
 );
 
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Define a route for the root URL
+// Define root route handler
 app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.use('/auth', AuthRouter);
+app.use('/', AuthRouter);
 
-const port = 2303;
+const port = process.env.PORT || 2303; // Use process.env.PORT for Render
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
