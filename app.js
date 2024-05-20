@@ -15,18 +15,17 @@ app.use(
     secret: '4C731FAFF92B7EA24D2B6D5A7C5FF',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }, // Set to true if using HTTPS
+    cookie: { secure: false },
   })
 );
 
-// Define root route handler
 app.get('/', (req, res) => {
   res.render('home');
 });
 
 app.use('/', AuthRouter);
 
-const port = process.env.PORT || 2303; // Use process.env.PORT for Render
+const port = 2303;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
