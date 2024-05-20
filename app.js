@@ -19,9 +19,17 @@ app.use(
   })
 );
 
-app.use('/', AuthRouter);
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Define a route for the root URL
+app.get('/', (req, res) => {
+  res.render('home');
+});
+
+app.use('/auth', AuthRouter);
 
 const port = 2303;
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
